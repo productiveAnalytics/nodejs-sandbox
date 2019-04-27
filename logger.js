@@ -1,9 +1,6 @@
-function log(logMode, message) {
-    console.log(`[${logMode}]: ${message}`);
-}
-
 function log(message) {
-    log("DEBUG", message);
+    var logMode = "DEBUG";
+    console.log(`[${logMode}] : ${message}`);
 }
 
 // export as logger object
