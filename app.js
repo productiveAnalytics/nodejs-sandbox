@@ -27,6 +27,8 @@ console.log(files);
 // By default, functions in NodeJS are asynchronous
 console.log('\nReading files Asynchronously >>>')
 fs.readdir('./', function(err, files) {
-    if (err) log_funct(err);
-    if (files) console.log(files);
+    if (err) 
+        log_funct(err)
+    else 
+        console.log(files);
 });
