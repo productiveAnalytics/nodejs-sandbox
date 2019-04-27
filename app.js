@@ -32,3 +32,26 @@ fs.readdir('./', function(err, files) {
     else 
         console.log(files);
 });
+
+const EventEmitter = require('events');
+var event_emmitter = new EventEmitter();
+
+const EVEN_NAME = 'messageLogged';
+
+// event_emmitter.addListener(EVEN_NAME, function(eventArgs) {
+//     console.log(`Event '${EVEN_NAME}' happened with args ${eventArgs}`);
+// });
+
+// ABOVE is same as FOLLOWING.
+// 1. on() ~ addListener()
+// 2. callback function ~ shorthand => operator
+event_emmitter.on(EVEN_NAME, (eventArgs) => {
+    var jsonStr = JSON.stringify(eventArgs);
+    console.log(`Event '${EVEN_NAME}' happened with args ${jsonStr}`);
+});
+
+function emit(eventArgs) {
+    event_emmitter.emit(EVEN_NAME, eventArgs);
+}
+
+emit({'event_id': '123', 'msg': 'logMe'});
