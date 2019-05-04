@@ -1,0 +1,42 @@
+const https = require('https');
+
+function fetch(url) {
+    return new Promise ((resolve, reject) => {
+        https.get(url, (response) => {
+            let data = '';
+
+            response.on('data', (readData) => {data = data + readData});
+            response.on('end', () => resolve(data)); // Resolve promise
+            response.on('error', () => reject(`Error while reading url: ${url}`)); // Reject promise;
+        });
+    });
+}
+
+let myUrl = ''
+
+// Option 1 : Use Promise standard way
+myUrl = 'https://www.google.com';
+let myPromise1 = fetch(myUrl);
+myPromise1.then((data) => console.log(`Promise: Data length=${data.length}`))
+          .catch((errMsg) => console.log(errorMsg));
+
+/*
+myUrl = 'https://www.froogaal.com';
+try {
+    let myPromise2 = fetch(myUrl);
+    myPromise2.then(data => console.log(`Promise: Data length=${data.length}`))
+              .catch(errMsg => console.error(errMsg));
+} catch (error) {
+    console.error(`Unable to connect to url: ${myUrl}`);
+    console.error(error);
+}
+*/
+
+// Option 2 : Asynch Await
+async function readWebsite() {
+   myUrl = 'https://www.google.com';
+   const readData = await fetch(myUrl);
+   console.log(`Async-Await: Data length=${readData.length}`);
+} 
+
+readWebsite();
