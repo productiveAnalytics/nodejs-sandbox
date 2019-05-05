@@ -1,4 +1,4 @@
-NodeJs-sandbox
+NodeJs-sandbox (See: https://app.pluralsight.com/library/courses/nodejs-getting-started/table-of-contents)
 
 #Run as:
 node app.js
