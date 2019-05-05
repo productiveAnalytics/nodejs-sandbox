@@ -35,7 +35,9 @@ try {
 // Option 2 : Asynch Await
 async function readWebsite() {
    myUrl = 'https://www.google.com';
+
    const readData = await fetch(myUrl);
+   
    console.log(`Async-Await: Data length=${readData.length}`);
 } 
 
